@@ -26,14 +26,14 @@
 {% macro displayComments(comments) %}
 {% for comment in comments %}
 {% if comment.user.profile_pic_path %}
-<img src="{{ comment.user.profile_pic_path }}" alt="Display image" height='50' width='50'>
+<img src="{{ comment.user.profile_pic_path }}" alt="Display image" height='20' width='20'>
 <p>{{comment.user.username}}</p>
   <p>{{comment.content}}</p>
   {%else%}
-  <img src="static/photos/no_dp.png" alt="Display image" height='50' width='50'>
-  <p>{{comment.user.username}}</p>
+  <img src="static/photos/no_dp.png" alt="Display image" height='30' width='20'>
+  <p>{{comment.user.username}}</p><br>
   
-    <p>{{comment.content}}</p>
+    <p>{{comment.content}}</p><br>
 
 
 {%endif%}

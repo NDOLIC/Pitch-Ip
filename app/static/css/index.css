@@ -1,0 +1,74 @@
+img{
+    height: 80px;
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .pitch{
+    background-color: grey;
+    color:white;
+    height:50px;
+    border-radius: 5%;
+    margin:10px;
+    padding:5px;
+  }
+  
+  button{
+    margin:5px;
+  }
+  
+  #big{
+    background-color: black;
+    color:rgb(163, 163, 163);
+    height:100px;
+    text-align: center;
+    padding-top: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .name{
+    font-size: 15px;
+    font-style: italic;
+    color: darkred;
+  }
+  
+  .block{
+    background-color: blanchedalmond;
+  }
+  
+  .hh{
+    border:2px solid black;
+    padding:4px;
+  }
+  
+  .kk{
+    border:1px solid black;
+    padding:8px;
+    width: 700px;
+    margin: 4px;
+  }
+  
+  .rr{
+    border-bottom: 2px solid black;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  
+  }
+  
+  body{
+    background-color: rgb(255, 240, 217);
+  }
+  h2{
+    background-color: black;
+    color:rgb(163, 163, 163);
+    height:100px;
+    text-align: center;
+    padding-top: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  li>a{
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    color: rgb(21, 21, 117);
+  }
