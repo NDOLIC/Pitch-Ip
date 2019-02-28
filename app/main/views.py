@@ -90,7 +90,7 @@ def add_comment(id):
      db.session.commit() 
 
      return redirect(url_for('main.index'))
-  return render_template('comment.html', comment_form=form)
+  return render_template('comment.html', comment_form=form ,pitch=pitch)
 
 @main.route('/pitch/<int:id>')
 def single_pitch(id):
