@@ -1,108 +1,97 @@
-
-
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template,request,redirect,url_for, abort
 from . import main
-from .forms import PitchForm, CommentForm, Vote  
-from ..models import User, Pitch, Comment
+
+from .forms import UpdateProfile,CommentForm,AddPitchForm
+from .. import db,photos
+from ..models import Comment,Pitch,User
 from flask_login import login_required, current_user
-from .. import db, photos
-
-
+# import markdown2 
+from flask_fontawesome import FontAwesome
 
 @main.route('/')
 def index():
-    """
-    Function that renders the index.html and its content
-    """
-    pitches = Pitch.query.all()
+  title="Home| 60 seconds pitch"
+  all_pitches = Pitch.get_pitches()
+  
+  return render_template('index.html',title=title, pitches = all_pitches)
 
-    return render_template('index.html', pitches=pitches)
-
-
-@main.route('/business')
-def business():
-    """
-    Function that renders the business category pitches and its content
-    """
-    business_pitch = Pitch.query.filter_by(category='business').all()
-
-    return render_template('business.html', business=business_pitch)
-
-@main.route('/new', methods=['GET', 'POST'])
+@main.route('/pitch/new', methods = ['GET', 'POST'])
 @login_required
-def new():
-    pitch_form = PitchForm()
+def add_pitch():
+    form = AddPitchForm()
+    
+    if form.validate_on_submit():
+        category = form.category.data
 
-    if pitch_form.validate_on_submit():
-        title = pitch_form.title.data
-        body = pitch_form.body.data
-        author = pitch_form.author.data
-        category = pitch_form.category.data
-        # category=category
-        new_pitch = Pitch(title=title, body=body,author=author, category=category, upvotes=0,downvotes=0,users=current_user)
-        new_pitch.save_pitches()
+        pitch = form.content.data
+
+        new_pitch = Pitch(content=pitch, category = category, user=current_user)
+        new_pitch.save_pitch()
+
         return redirect(url_for('main.index'))
 
-    return render_template('new.html', pitch_form=pitch_form)
+    # all_pitches = Pitch.get_pitches()
 
-
-@main.route('/comment/<int:id>', methods=['GET', 'POST'])
-@login_required
-def comment(id):
-    comment_form = CommentForm()
-    vote_radio = Vote()
-    pitch = Pitch.query.get(id)
-    if comment_form.validate_on_submit():
-        title = comment_form.title.data
-        comment = comment_form.comment.data
-        # category=category
-        new_comment = Comment(comment=comment,
-                              title=title,
-                              user=current_user)
-        new_comment.save_comment()
-        return redirect(url_for('main.index'))
-
-    return render_template('comment.html',
-                           comment_form=comment_form,
-                           pitch=pitch,
-                           vote_radio=vote_radio)
-
-
-@main.route('/update', methods=['POST'])
-def update():
-    pitch = Pitch.query.get(id)
-    pitch.upvotes = request.args.get('jsdata')
-    pitch.downvotes = request.args.get('jsdata')
-
-    return render_template('button.html', pitch=pitch)
-
+    title = 'Add Pitch| 60 seconds pitch'    
+    return render_template('pitches.html', title = title, pitch_form = form,user=current_user)
 
 @main.route('/user/<uname>')
-@login_required
 def profile(uname):
-    """
-    Function that renders the profile page of our user
-    """
-    user = User.query.filter_by(username=uname).first()
+    user = User.query.filter_by(username = uname).first()
 
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user=user)
+    return render_template("profile/profile.html", user = user)
 
-@main.route('/user/<uname>/update/pic', methods=['POST'])
+@main.route('/user/<uname>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(uname):
+    user = User.query.filter_by(username = uname).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',uname=user.username))
+
+    return render_template('profile/update.html',form =form)
+
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(uname):
-    user = User.query.filter_by(username=uname).first()
-
+    user = User.query.filter_by(username = uname).first()
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
+        path = f'static/photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile', uname=uname))
+    return redirect(url_for('main.profile',uname=uname))
 
+@main.route('/new/comment/<int:id>', methods = ['GET','POST'])
+@login_required
+def add_comment(id):
+  pitch=Pitch.query.filter_by(id=id).first()
+  if pitch is None:
+    abort(404)
 
+  form=CommentForm()
+  if form.validate_on_submit():
+     comment=form.comment.data
+     new_comment=Comment(content=comment ,pitch=pitch ,user=current_user)
+     db.session.add(new_comment)  
+     db.session.commit() 
+
+     return redirect(url_for('main.index'))
+  return render_template('comment.html', comment_form=form)
+
+@main.route('/pitch/<int:id>')
 def single_pitch(id):
     pitch=Pitch.query.filter_by(id=id).first()
     comments=Comment.get_comments(id=id)
@@ -113,3 +102,14 @@ def upvoting(id):
     pitch1=Pitch.query.filter_by(id=id).first()
     pitch1.upvotes=Pitch.upvote(id)
     return redirect(url_for('main.single_pitch',pitch=pitch1.upvotes))
+
+@main.route('/categories')
+def categories():
+    all_pitches = Pitch.get_pitches()
+    path=[]
+    for pitch in all_pitches:
+        category=pitch.category
+        path.append(category)
+        return path
+
+    return render_template('categories.html',category = path)
