@@ -26,7 +26,7 @@ def add_pitch():
 
         pitch = form.content.data
 
-        new_pitch = Pitch(content=pitch, category = category, user=current_user, pitch_form= form)
+        new_pitch = Pitch(content=pitch, category = category, user=current_user, user_id=current_user.id)
         new_pitch.save_pitch()
 
         return redirect(url_for('main.index'))
