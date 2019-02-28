@@ -34,7 +34,7 @@ def add_pitch():
     # all_pitches = Pitch.get_pitches()
 
     title = 'Add Pitch| 60 seconds pitch'    
-    return render_template('pitch.html', title = title, pitch_form = form,user=current_user)
+    return render_template('pitch.html', title = title, Pitch_form = form,user=current_user)
 
 @main.route('/user/<uname>')
 def profile(uname):

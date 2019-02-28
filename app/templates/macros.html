@@ -1,23 +1,41 @@
-{% macro displayMovieList(movie_list) %}
-<!-- 
-    {% for movie in movie_list %}
-        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
-            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster" class="img-responsive">
-            <li class="text-center">
-                <a href="/movie/{{movie.id}}">
-                    {{ movie.title|truncate(10)}}</a>
-            </li>
-        </div>
+{% macro displayPitches(pitches) %}
 
-    {% endfor %}
+{% for pitch in pitches %}
+   {% if pitch.user.profile_pic_path %}
+    <img src="{{ pitch.user.profile_pic_path }}" alt="Display image" height='50' width='50'>
+    <p>{{pitch.user.username}}</p>
 
-{% endmacro %} -->
-<!-- < Displaying reviews macro -->
-<!-- {% macro displayReviews(review_list) %}
-    {% for review in review_list %}
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
-        <h2> {{ review.title}} </h2>
-        <p> {{ review.review | truncate(30) }}</p>
-    </div>
-    {% endfor %}
-{% endmacro %}  -->
+  <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a>
+  <button href="{{url_for('main.upvoting',id=pitch.id)}}">Upvote</button>
+  <button>Downvote</button>
+  
+   <a href="/new/comment/{{pitch.id}}">Add comment</a>
+  {%else %}
+   <img src="static/photos/no_dp.png" alt="">
+   <p>{{pitch.user.username}}</p>
+   <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a>
+
+  <button>Upvote</button>
+  <button>Downvote</button>
+  <a href="/new/comment/{{pitch.id}}">Add comment</a>
+  {%endif%}
+
+  {%endfor%}
+  {%endmacro%}
+
+{% macro displayComments(comments) %}
+{% for comment in comments %}
+{% if comment.user.profile_pic_path %}
+<img src="{{ comment.user.profile_pic_path }}" alt="Display image" height='50' width='50'>
+<p>{{comment.user.username}}</p>
+  <p>{{comment.content}}</p>
+  {%else%}
+  <img src="static/photos/no_dp.png" alt="Display image" height='50' width='50'>
+  <p>{{comment.user.username}}</p>
+  
+    <p>{{comment.content}}</p>
+
+
+{%endif%}
+{%endfor%}
+{%endmacro%}
