@@ -4,7 +4,7 @@ from wtforms.validators import Required
 # from ..models import Pitch
 
 
-class PitchForm(FlaskForm):
+class AddPitchForm(FlaskForm):
     title = StringField('Pitch Title', validators=[Required()])
     body = TextAreaField('Enter your comment here', validators=[Required()])
     author = StringField('Author', validators=[Required()])

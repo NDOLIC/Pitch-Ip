@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for, abort
 from . import main
 
-from .forms import UpdateProfile,CommentForm
+from .forms import UpdateProfile,CommentForm,AddPitchForm
 from .. import db,photos
 from ..models import Comment,Pitch,User
 from flask_login import login_required, current_user
@@ -34,7 +34,7 @@ def add_pitch():
     # all_pitches = Pitch.get_pitches()
 
     title = 'Add Pitch| 60 seconds pitch'    
-    return render_template('pitches.html', title = title, pitch_form = form,user=current_user)
+    return render_template('pitch.html', title = title, pitch_form = form,user=current_user)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -106,9 +106,9 @@ def upvoting(id):
 
 @main.route('/categories')
 def categories():
-    all_pitches = Pitch.get_pitches()
+    all_pitch = Pitch.get_pitch()
     path=[]
-    for pitch in all_pitches:
+    for pitch in all_pitch:
         category=pitch.category
         path.append(category)
         return path

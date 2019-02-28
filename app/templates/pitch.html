@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+<!-- Content block -->
+{% if title %}
+<title>{{title}}</title>
+{% else %}
+<title> Welcome to Pitches Page</title>
+{% endif %}
+
+
+{% block content %}
+ {% if pitch.user.profile_pic_path %}
+ <img src="{{pitch.user.profile_pic_path}}" alt="image">
+ <p>{{pitch.user.username}}</p>
+ <h4>{{pitch.content}}</h4>
+ <button>Upvote</button>
+ <button>Downvote</button>
+ 
+ {% endif}
+ {% endblock %}
