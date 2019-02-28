@@ -44,4 +44,14 @@ def create_app(config_name):
     login_manager.init_app(app)
     mail.init_app(app)
 
+#     photos = UploadSet('photos',IMAGES)
+# def create_app(config_name):
+#     app = Flask(__name__)
+#     #........
+
+#     # configure UploadSet
+#     configure_uploads(app,photos)
+
+#     #.......
+
     return app

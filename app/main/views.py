@@ -1,13 +1,19 @@
 # from flask import render_template,request,redirect,url_for
-from . import main
+# from . import main
 # from ..request import get_movies,get_movie,search_movie
 # from .forms import ReviewForm
 # from ..models import Review
-from flask_login import login_required
-from flask import render_template,request,redirect,url_for,abort
-from ..models import Pitch, User
-from .forms import ReviewForm,UpdateProfile
+# from flask_login import login_required
+# from flask import render_template,request,redirect,url_for,abort
+# from ..models import Pitch, User
+# from .forms import ReviewForm,UpdateProfile
 # from .. import db
+# from .. import db,photos
+from flask import render_template,redirect,url_for,abort,request
+from . import main
+from flask_login import login_required,current_user
+from ..models import User,Comment,Pitch
+from .forms import UpdateProfile,CommentForm,PitchForm
 from .. import db,photos
 
 

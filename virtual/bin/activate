@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/alice/Documents/pitch_ip/virtual"
+VIRTUAL_ENV="/home/claire/Desktop/pitch_ip/virtual"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
