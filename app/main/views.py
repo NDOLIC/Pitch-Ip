@@ -102,18 +102,6 @@ def business():
 
     return render_template('business.html', business=business_pitch)
 
-
-@main.route('/jobs')
-def jobs():
-    """
-    Function that renders the job category pitches and its content
-    """
-
-    jobs_pitch = Pitch.query.filter_by(category='jobs').all()
-
-    return render_template('jobs.html', jobs=jobs_pitch)
-
-
 @main.route('/new', methods=['GET', 'POST'])
 @login_required
 def new():
@@ -125,10 +113,7 @@ def new():
         author = pitch_form.author.data
         category = pitch_form.category.data
         # category=category
-        new_pitch = Pitch(title=title, body=body,
-                          author=author, category=category, upvotes=0,
-                          downvotes=0,
-                          users=current_user)
+        new_pitch = Pitch(title=title, body=body,author=author, category=category, upvotes=0,downvotes=0,users=current_user)
         new_pitch.save_pitches()
         return redirect(url_for('main.index'))
 
