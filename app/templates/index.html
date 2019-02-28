@@ -1,8 +1,6 @@
-
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 {{ fontawesome_html() }}
-<!-- {% import "bootstrap/wtf.html" as wtf %} -->
 
 <!-- Styles block -->
 
@@ -14,18 +12,18 @@
         {% if title %}
         <title> {{ title }}</title>
         {% else %}
-        <title> Welcome to 60 seconds pitch</title>
+        <title> Welcome to pitches</title>
         {% endif %}
       
     {%block content %}
-    
-   
+    <h1 id="big">1Min Pitch</h1>
 
    
-   <a href={{url_for('main.add_pitch') }}>Add Pitch</a>
-   {{ macro.displayPitches(pitches)}}
+<div class="container">
 
-
+   {{ macro.displayPitches(pitches)}}<br>
+   <a href="/pitch/new" class="btn btn-primary">Add Pitch</a>
+</div>
 
 
 {% endblock %}

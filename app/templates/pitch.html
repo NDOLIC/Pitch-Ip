@@ -12,8 +12,8 @@
 {%for pitch in pitches %}
  {% if pitch.user.profile_pic_path %}
     <img src="{{pitch.user.profile_pic_path}}" alt="image">
-    <p>{{pitch.user.username}}</p>
-    <h4>{{pitch.content}}</h4>
+    <p>{{pitch.user.username}}</p><br>
+    <h4>{{pitch.content}}</h4><br>
     <button>Upvote</button><br>
     <button>Downvote</button>
  

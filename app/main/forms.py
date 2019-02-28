@@ -22,9 +22,8 @@ class CommentForm(FlaskForm):
 
 
 class Vote(FlaskForm):
-    rating = RadioField('Do you like this Pitch? Upvote or Downvote it',
-                        choices=[('upvote', 'upvote'),
-                                 ('downvote', 'downvote')],
+    rating = RadioField('Do you like this Pitch?',
+                        choices=[('upvote', 'upvote'),('downvote', 'downvote')],
                         validators=[Required()])
 
 
