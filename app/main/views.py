@@ -26,7 +26,7 @@ def add_pitch():
 
         pitch = form.content.data
 
-        new_pitch = Pitch(content=pitch, category = category, user=current_user)
+        new_pitch = Pitch(content=pitch, category = category, user=current_user, pitch_form= form)
         new_pitch.save_pitch()
 
         return redirect(url_for('main.index'))
@@ -34,7 +34,7 @@ def add_pitch():
     # all_pitches = Pitch.get_pitches()
 
     title = 'Add Pitch| 60 seconds pitch'    
-    return render_template('pitch.html', title = title, Pitch_form = form,user=current_user)
+    return render_template('pitches.html', title = title, pitch_form = form,user=current_user)
 
 @main.route('/user/<uname>')
 def profile(uname):
