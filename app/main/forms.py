@@ -1,31 +1,33 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, RadioField
 from wtforms.validators import Required
-from ..models import User,Comment,Pitch
-
-
-
-
-# class ReviewForm(FlaskForm):
-
-#     title = StringField('Review title',validators=[Required()])
-#     review = TextAreaField('Movie review', validators=[Required()])
-#     submit = SubmitField('Submit')
-
-
-# class UpdateProfile(FlaskForm):
-#     bio = TextAreaField('Tell us about you.',validators = [Required()])
-#     submit = SubmitField('Submit')
-class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required()])
-    submit = SubmitField('Submit')
+# from ..models import Pitch
 
 
 class PitchForm(FlaskForm):
-    title=StringField('Pitch title',validators=[Required()])
-    pitch=TextAreaField('Pitch description.',validators = [Required()])
-    submit = SubmitField('Post')
+    title = StringField('Pitch Title', validators=[Required()])
+    body = TextAreaField('Enter your comment here', validators=[Required()])
+    author = StringField('Author', validators=[Required()])
+    category = RadioField('Pick Category',
+                          choices=[('business', 'business'),
+                                   ('jobs', 'jobs')],
+                          validators=[Required()])
+    submit = SubmitField('Submit')
+
 
 class CommentForm(FlaskForm):
-    comment=TextAreaField('Pitch comment.',validators = [Required()])
+    title = StringField('Title', validators=[Required()])
+    comment = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class Vote(FlaskForm):
+    rating = RadioField('Do you like this Pitch? Upvote or Downvote it',
+                        choices=[('upvote', 'upvote'),
+                                 ('downvote', 'downvote')],
+                        validators=[Required()])
+
+
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField('Tell us more about yourself.',
+                        validators=[Required()])
