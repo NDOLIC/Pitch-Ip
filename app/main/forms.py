@@ -30,3 +30,4 @@ class Vote(FlaskForm):
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us more about yourself.',
                         validators=[Required()])
+    submit = SubmitField('Submit')

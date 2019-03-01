@@ -16,12 +16,13 @@
         {% endif %}
       
     {%block content %}
-    <h1 id="big">1Min Pitch</h1>
+    <h1>1Min Pitch</h1>
+<p>Here are one minute pitch app you can comment and upvote or downvote</p>
 
    
 <div class="container">
 
-   {{ macro.displayPitches(pitches)}}<br>
+   {{ macro.displayPitches(pitches)}}<br><br>
    <a href="/pitch/new" class="btn btn-primary">Add Pitch</a>
 </div>
 

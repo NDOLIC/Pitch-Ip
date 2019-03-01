@@ -5,7 +5,7 @@ img{
   }
   
   .pitch{
-    background-color: grey;
+    background-color: black;
     color:white;
     height:50px;
     border-radius: 5%;
@@ -20,21 +20,20 @@ img{
   .block{
     background-color: blanchedalmond;
   }
-  
-  .hh{
-    border:2px solid black;
-    padding:4px;
-  }
-  
-  
-  
-  
   body{
-    background-color: rgb(255, 240, 217);
+    background-color: rgb(33, 68, 33);
   }
   
   li>a{
     font-family: 'Courier New';
     font-style: oblique;
-    color: rgb(21, 21, 117);
+    color: brown;
   }
+  p{
+      text-align: center;
+      color: black;
+    }
+ h1{
+     text-align: center;
+     color: black;
+ }
