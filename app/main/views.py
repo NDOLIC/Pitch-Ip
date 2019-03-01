@@ -16,6 +16,7 @@ def index():
   
   return render_template('index.html',title=title, pitches = all_pitches)
 
+
 @main.route('/pitch/new', methods = ['GET', 'POST'])
 @login_required
 def add_pitch():
