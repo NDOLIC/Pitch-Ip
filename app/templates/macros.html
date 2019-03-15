@@ -2,22 +2,32 @@
 
 {% for pitch in pitches %}
    {% if pitch.user.profile_pic_path %}
-    <img src="{{ pitch.user.profile_pic_path }}" alt="Display image" height='50' width='50'>
-    <p>{{pitch.user.username}}</p>
+    <!-- <img src="{{ pitch.user.profile_pic_path }}" alt="Display image" height='50' width='50'> -->
+    <p>{{pitch.user.username}}</p><br><br>
 
-  <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a>
-  <button href="{{url_for('main.upvoting',id=pitch.id)}}">Upvote</button>
-  <button>Downvote</button>
+  <!-- <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a> -->
+  <!-- <button href="{{url_for('main.upvoting',id=pitch.id)}}">Upvote</button> -->
+    <a href='/pitch/{{pitch.id}}'>{{pitch.content}}</a><br><br>
+  <button class="btn btn-success"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/1024px-Yes_Check_Circle.svg.png" width="30px" height="25px"></button>&nbsp;
   
-   <a href="/new/comment/{{pitch.id}}">Add comment</a>
+  <button (click)='downvote()' class="btn btn-success"><img src="https://banner2.kisspng.com/20180721/uoe/kisspng-thumb-signal-computer-icons-yes-and-no-clip-art-informazioni-commerciali-5b5309aaad9795.661154411532168618711.jpg" width="40px" height="25px"></button>&nbsp;
+  
+   <a href="/new/comment/{{pitch.id}}">Add comment</a><br>
   {%else %}
    <img src="static/photos/no_dp.png" alt="">
-   <p>{{pitch.user.username}}</p>
-   <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a>
+   <p>{{pitch.user.username}}</p><br>
+   {% for comment in pitch.comment %}
+    <p>comment:{{comment.description}}</p>
 
-  <button>Upvote</button>
-  <button>Downvote</button>
-  <a href="/new/comment/{{pitch.id}}">Add comment</a>
+    {%endfor%}
+   <!-- <a href="/pitch/{{pitch.id}}">{{pitch.content}}</a> -->
+
+  <!-- <button>Upvote</button>
+  <button>Downvote</button> -->
+  <button (click)='upvote()' class="btn btn-success"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/1024px-Yes_Check_Circle.svg.png" width="30px" height="25px"></button>&nbsp;
+    <button (click)='downvote()' class="btn btn-success"><img src="https://banner2.kisspng.com/20180721/uoe/kisspng-thumb-signal-computer-icons-yes-and-no-clip-art-informazioni-commerciali-5b5309aaad9795.661154411532168618711.jpg" width="40px" height="25px"></button>&nbsp;
+  <a href="/new/comment/{{pitch.id}}">Add comment</a><br>
+
   {%endif%}
 
   {%endfor%}

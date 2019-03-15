@@ -9,5 +9,12 @@
 {% block content %}
 <div class="container">
 {{wtf.quick_form(comment_form)}}<br>
+ {% for comment in all_pitches%}
+  <p class="card-title">{{comment.username}}</p>
+
+  <p class="card-text">{{comment.description}}</p>
+
 </div>
+
+{% endfor %}
 {% endblock %}

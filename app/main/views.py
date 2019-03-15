@@ -85,12 +85,12 @@ def add_comment(id):
 
   form=CommentForm()
   if form.validate_on_submit():
-     comment=form.comment.data
-     new_comment=Comment(content=comment ,pitch=pitch ,user=current_user)
-     db.session.add(new_comment)  
+        comment=form.comment.data
+        new_comment=Comment(content=comment ,pitch=pitch ,user=current_user)
+        db.session.add(new_comment)  
     #  db.session.commit() 
 
-     return redirect(url_for('main.index'))
+        return redirect(url_for('main.index'))
   return render_template('comment.html', comment_form=form ,pitch=pitch)
 
 @main.route('/pitch/<int:id>')

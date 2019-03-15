@@ -1,39 +1,45 @@
-img{
-    height: 80px;
-    width: 100px;
-    border-radius: 50%;
-  }
-  
-  .pitch{
-    background-color: black;
-    color:white;
-    height:50px;
-    border-radius: 5%;
-    margin:10px;
-    padding:5px;
-  }
-  
-  button{
-    margin:5px;
-  }
-  
-  .block{
-    background-color: blanchedalmond;
-  }
-  body{
-    background-color: rgb(33, 68, 33);
-  }
-  
-  li>a{
-    font-family: 'Courier New';
-    font-style: oblique;
-    color: brown;
-  }
-  p{
-      text-align: center;
-      color: black;
-    }
- h1{
-     text-align: center;
-     color: black;
- }
+
+h1{
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Indie Flower', cursive;
+}
+p{
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Loved by the King', cursive;
+}
+
+a{
+  font-size: 20px;
+}
+.pitch {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height:140px;
+    width: 550px;
+    margin: auto;
+
+    background-image: url("pitch2.png");
+
+    background-position: 0% 7%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body { 
+  background-color: aliceblue;
+  background-position: center;
+  background-size: cover;
+  height: 350px; 
+}
+.jumbotron{
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  background-color:black;
+  opacity: 0.2;
+}
+btn{
+  color: black;
+}

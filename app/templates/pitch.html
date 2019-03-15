@@ -9,16 +9,16 @@
 
 
 {% block content %}
-{%for pitch in pitches %}
- {% if pitch.user.profile_pic_path %}
+
     <img src="{{pitch.user.profile_pic_path}}" alt="image">
     <p>{{pitch.user.username}}</p><br>
     <h4>{{pitch.content}}</h4><br>
     <button>Upvote</button><br>
     <button>Downvote</button>
- 
- {% endif %}
+{%for comment in comments %}
 
- {%endfor%}
+  <p>{{comment.content}}</p>
+{% endfor%}
+
 
 {% endblock %}

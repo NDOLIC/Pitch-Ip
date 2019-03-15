@@ -72,14 +72,14 @@ class Pitch(db.Model):
        pitch=Pitch.query.filter_by(pitch_id=id).all()
        upvotes=0
        upvotes=pitch.upvotes+1
-       return upvotes
+       return upvote
 
    @classmethod
    def downvote(cls,id):
        pitch=Pitch.query.filter_by(pitch_id=id).all()
        downvotes=0
-       downvotes=pitch.downvotes-1
-       return downvotes
+       downvotes=pitch.downvotes+0
+       return downvote
 
 #    class Vote(Model):
 #     user_id = IntegerField(null=True)
