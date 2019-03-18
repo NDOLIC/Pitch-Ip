@@ -101,6 +101,9 @@ class Comment(db.Model):
 
 
     def save_comment(self):
+        '''
+        save the comment per post
+        '''
         db.session.add(self)
         db.session.commit()
 
@@ -118,9 +121,10 @@ class Comment(db.Model):
         comments = Comment.query.filter_by(user_id=id).all()
         return comments
 
-    # class PhotoProfile(db.Model):
-    #     __tablename__ = 'profile_photos'
+    class PhotoProfile(db.Model):
+        __tablename__ = 'profile_photos'
 
-    #     id = db.Column(db.Integer,primary_key = True)
-    #     pic_path = db.Column(db.String())
-    #     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+        id = db.Column(db.Integer,primary_key = True)
+        pic_path = db.Column(db.String())
+        user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+

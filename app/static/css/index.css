@@ -1,4 +1,6 @@
-
+.btn{
+  
+}
 h1{
   text-align: center;
   font-size: 40px;
@@ -41,5 +43,6 @@ body {
   opacity: 0.2;
 }
 btn{
-  color: black;
+  background-color: black;
+  color: white; 
 }
